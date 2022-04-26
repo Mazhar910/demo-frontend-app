@@ -1,6 +1,6 @@
 {
-  "name": "workzish-app",
-  "short_name": "workzish-app",
+  "name": "marbgroup-app",
+  "short_name": "marbgroup-app",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

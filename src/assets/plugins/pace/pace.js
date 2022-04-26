@@ -1,5 +1,5 @@
 (function() {
-  var AjaxMonitor, Bar, DocumentMonitor, ElementMonitor, ElementWorkzish, EventLagMonitor, Evented, Events, NoTargetError, Pace, RequestIntercept, SOURCE_KEYS, Scaler, SocketRequestWorkzish, XHRRequestWorkzish, animation, avgAmplitude, bar, cancelAnimation, cancelAnimationFrame, defaultOptions, extend, extendNative, getFromDOM, getIntercept, handlePushState, ignoreStack, init, now, options, requestAnimationFrame, result, runAnimation, scalers, shouldIgnoreURL, shouldTrack, source, sources, uniScaler, _WebSocket, _XDomainRequest, _XMLHttpRequest, _i, _intercept, _len, _pushState, _ref, _ref1, _replaceState,
+  var AjaxMonitor, Bar, DocumentMonitor, ElementMonitor, Elementmarbgroup, EventLagMonitor, Evented, Events, NoTargetError, Pace, RequestIntercept, SOURCE_KEYS, Scaler, SocketRequestmarbgroup, XHRRequestmarbgroup, animation, avgAmplitude, bar, cancelAnimation, cancelAnimationFrame, defaultOptions, extend, extendNative, getFromDOM, getIntercept, handlePushState, ignoreStack, init, now, options, requestAnimationFrame, result, runAnimation, scalers, shouldIgnoreURL, shouldTrack, source, sources, uniScaler, _WebSocket, _XDomainRequest, _XMLHttpRequest, _i, _intercept, _len, _pushState, _ref, _ref1, _replaceState,
     __slice = [].slice,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -563,9 +563,9 @@
         return;
       }
       if (type === 'socket') {
-        tracker = new SocketRequestWorkzish(request);
+        tracker = new SocketRequestmarbgroup(request);
       } else {
-        tracker = new XHRRequestWorkzish(request);
+        tracker = new XHRRequestmarbgroup(request);
       }
       return this.elements.push(tracker);
     };
@@ -574,8 +574,8 @@
 
   })();
 
-  XHRRequestWorkzish = (function() {
-    function XHRRequestWorkzish(request) {
+  XHRRequestmarbgroup = (function() {
+    function XHRRequestmarbgroup(request) {
       var event, size, _j, _len1, _onreadystatechange, _ref2,
         _this = this;
       this.progress = 0;
@@ -609,12 +609,12 @@
       }
     }
 
-    return XHRRequestWorkzish;
+    return XHRRequestmarbgroup;
 
   })();
 
-  SocketRequestWorkzish = (function() {
-    function SocketRequestWorkzish(request) {
+  SocketRequestmarbgroup = (function() {
+    function SocketRequestmarbgroup(request) {
       var event, _j, _len1, _ref2,
         _this = this;
       this.progress = 0;
@@ -627,7 +627,7 @@
       }
     }
 
-    return SocketRequestWorkzish;
+    return SocketRequestmarbgroup;
 
   })();
 
@@ -644,7 +644,7 @@
       _ref2 = options.selectors;
       for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
         selector = _ref2[_j];
-        this.elements.push(new ElementWorkzish(selector));
+        this.elements.push(new Elementmarbgroup(selector));
       }
     }
 
@@ -652,14 +652,14 @@
 
   })();
 
-  ElementWorkzish = (function() {
-    function ElementWorkzish(selector) {
+  Elementmarbgroup = (function() {
+    function Elementmarbgroup(selector) {
       this.selector = selector;
       this.progress = 0;
       this.check();
     }
 
-    ElementWorkzish.prototype.check = function() {
+    Elementmarbgroup.prototype.check = function() {
       var _this = this;
       if (document.querySelector(this.selector)) {
         return this.done();
@@ -670,11 +670,11 @@
       }
     };
 
-    ElementWorkzish.prototype.done = function() {
+    Elementmarbgroup.prototype.done = function() {
       return this.progress = 100;
     };
 
-    return ElementWorkzish;
+    return Elementmarbgroup;
 
   })();
 
