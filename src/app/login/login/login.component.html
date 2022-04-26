@@ -1,0 +1,42 @@
+<div class="login-box">
+  <div class="login-logo">
+    <a [routerLink]="['/']"><b>LogIn</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body theme-black">
+    <p class="login-box-msg">Log in to start your session</p>
+
+    <form [formGroup]="loginForm">
+      <div class="form-group has-feedback" [ngClass]="fields.phone.errors && !fields.phone.pristine ? 'has-error' : ''">
+        <input autofocus="autofocus" type="text" formControlName="phone" class="form-control"
+          placeholder="Enter phone or email address">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div *ngIf="fields.phone.errors && !fields.phone.pristine" class="help-block">
+          <div [hidden]="!fields.phone.errors.required">Phone or Email Address is required.</div>
+        </div>
+      </div>
+      <div class="form-group has-feedback"
+        [ngClass]="fields.password.errors && !fields.password.pristine ? 'has-error' : ''">
+        <input type="password" formControlName="password" class="form-control" placeholder="Enter password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div *ngIf="fields.password.errors && !fields.password.pristine" class="help-block">
+          <div [hidden]="!fields.password.errors.required">Password is required.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-12">
+          <button class="btn btn-danger btn-block btn-flat" [disabled]="loginForm.invalid" (click)="login()">Log
+            In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+    <br />
+    <a [routerLink]="['/register']" class="text-center">Register</a>
+    <br />
+  </div>
+  <!-- /.login-box-body -->
+</div>

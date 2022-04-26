@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-danger theme-black">
+      <div class="box-header">
+        <!-- <h3 class="box-title">List Users</h3> -->
+        <div class="input-group">
+            <span class="input-group-addon theme-black" style="border:none;">
+                <h3 class="box-title float-left">Manage Users</h3>
+              </span>
+            <span class="input-group-btn">
+                <a class="btn btn-danger float-right" (click)="addUser()"><i class="fa fa-plus"></i>&nbsp;Add User</a>
+            </span>
+          </div>
+      </div>
+      <div class="box-body">
+        <table id="list-user-table" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="visible-md visible-lg">Recent Activity</th>
+              <th>Last Updated Date</th>
+              <th>Location(s)</th>
+              <th class="visible-md visible-lg">Role</th>
+              <th class="visible-md visible-lg">Full Name</th>
+              <th>Phone</th>
+              <th class="visible-md visible-lg">Email</th>
+              <th *ngIf="loggedInUserRole == 'Admin' " class="visible-md visible-lg">State</th>
+              <th>Status</th>
+              <th></th>
+              <th></th>
+              <th *ngIf="loggedInUserRole == 'Admin' "></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td class="visible-md visible-lg"> {{ user.updatedDate | amTimeAgo  }} </td>
+              <td> {{ user.updatedDate | date:'medium' }} </td>
+              <td> {{ user?.locationsStr }} </td>
+              <td class="visible-md visible-lg"> {{ user.role?.name }} </td>
+              <td class="visible-md visible-lg"> {{ user.fullName }} </td>
+              <td> {{ user.phone }} </td>
+              <td class="visible-md visible-lg"> {{ user.email }} </td>
+              <td *ngIf="loggedInUserRole == 'Admin' " class="visible-md visible-lg"> {{ user.state ? 'Available' : 'Removed' }} </td>
+              <td > 
+                <span *ngIf="user.status=='Active'" class="label label-success">{{ user.status }} </span>
+                <span *ngIf="user.status=='Inactive'" class="label label-danger">{{ user.status }} </span>
+              </td>
+              <td><a class="cursor-pointer" (click)="editUser(user)"><i class="fa fa-pencil"></i></a></td>
+              <td *ngIf="user.status == 'Active' "><a class="cursor-pointer" (click)="toggleUser(user)"><i class="fa fa-toggle-on"></i></a></td>
+              <td *ngIf="user.status == 'Inactive' "><a class="cursor-pointer" (click)="toggleUser(user)"><i class="fa fa-toggle-off"></i></a></td>
+              <td *ngIf="loggedInUserRole == 'Admin' "><a class="cursor-pointer" (click)="deleteUser(user)"><i class="fa fa-trash"></i></a></td>
+              <!-- <td><a *ngIf="(loggedInUserRole != 'Admin' && loggedInUser.id == user.id) || (user.role.name == 'Staff' && loggedInUser.id != user.id)" class="cursor-pointer" (click)="editUser(user)"><i class="fa fa-pencil"></i></a></td>
+              <td><a *ngIf="(loggedInUserRole != 'Admin' && loggedInUser.id == user.id) || (user.role.name == 'Staff' && loggedInUser.id != user.id)" class="cursor-pointer" (click)="deleteUser(user)"><i class="fa fa-trash"></i></a></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

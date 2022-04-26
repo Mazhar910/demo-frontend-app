@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-danger theme-black">
+      <div class="box-header">
+        <h3 class="box-title theme-black">Profile</h3>
+      </div>
+      <div class="box-body">
+        <form [formGroup]="profileForm" novalidate>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" [ngClass]="
+                  (fields.phone.errors && !fields.phone.pristine) ||
+                  phoneUsed ||
+                  invalidPhone
+                    ? 'has-error'
+                    : ''
+                ">
+                <label for="phone">Phone:</label>
+                <input (keypress)="numberOnly($event)" (keyup)="isPhoneUsed(phone.value); isValidPhone(phone.value)"
+                  type="text" formControlName="phone" placeholder="Enter Phone as 03331234567" name="phone"
+                  class="form-control" id="phone" #phone />
+                <div *ngIf="fields.phone.errors && !fields.phone.pristine" class="help-block">
+                  <div [hidden]="!fields.phone.errors.required">
+                    Phone is required.
+                  </div>
+                  <div [hidden]="!fields.phone.errors.maxlength">
+                    Phone number not more than 11 numbers.
+                  </div>
+                  <div [hidden]="!fields.phone.errors.minlength">
+                    Phone number not less than 11 numbers.
+                  </div>
+                </div>
+                <div *ngIf="phoneUsed || invalidPhone" class="help-block">
+                  <div *ngIf="invalidPhone">Phone should start with 0.</div>
+                  <div *ngIf="phoneUsed">Phone is already used.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group" [ngClass]="
+                  fields.fullName.errors && !fields.fullName.pristine
+                    ? 'has-error'
+                    : ''
+                ">
+                <label for="fullName">Full Name:</label>
+                <input formControlName="fullName" placeholder="Enter Full Name" name="fullName" class="form-control"
+                  id="fullName" />
+                <span class="glyphicon form-control-feedback"></span>
+                <div *ngIf="fields.fullName.errors && !fields.fullName.pristine" class="help-block">
+                  <div [hidden]="!fields.fullName.errors.required">
+                    Full Name is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group" [ngClass]="
+                  (fields.email.errors && !fields.email.pristine) || emailUsed
+                    ? 'has-error'
+                    : ''
+                ">
+                <label for="email">Email:</label>
+                <input (keyup)="isEmailUsed(email.value)" type="email" formControlName="email"
+                  placeholder="Enter Email Address" name="email" class="form-control" id="email" #email />
+                <div *ngIf="fields.email.errors && !fields.email.pristine" class="help-block">
+                  <div [hidden]="!fields.email.errors.required">
+                    Email is required.
+                  </div>
+                  <div [hidden]="!fields.email.errors.email">
+                    Email must be a valid email.
+                  </div>
+                </div>
+                <div *ngIf="emailUsed" class="help-block">
+                  <div *ngIf="emailUsed">Email is already used.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="file-upload" class="btn btn-block btn-flat btn-danger">
+                  Upload Avatar</label>
+                <input id="file-upload" type="file" accept="image/*" (change)="readAvatar($event)" />
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <button [disabled]="avatar == null" class="btn btn-block btn-flat btn-danger" (click)="removeAvatar()">
+                  Remove Avatar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div *ngIf="avatar == null" class="preview-images-zone">
+                <span style="width: 100%; line-height: 10; text-align: center">No Avatar Available</span>
+              </div>
+              <div *ngIf="avatar != null" class="preview-images-zone">
+                <div class="preview-image">
+                  <div class="image-cancel" (click)="removeAvatar()">x</div>
+                  <div class="image-zone"><img src="{{ avatar }}" /></div>
+                  <!-- <div><input type="text" class="form-control" value=""></div> -->
+                  <!-- <div class="tools-edit-image"><a href="javascript:void(0)" class="btn btn-light btn-edit-image">edit</a></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label></label>
+                <button type="button" (click)="saveProfile()" class="btn btn-block btn-flat btn-danger" [disabled]="profileForm.invalid">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

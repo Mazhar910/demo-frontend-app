@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger theme-black" style="padding:0px !important;">
+            <div class="box-header">
+                <div class="input-group">
+                    <span class="input-group-addon theme-black" style="border:none;">
+                        <h3 class="box-title float-left">Products ({{products.length}})</h3>
+                    </span>
+                    <span class="input-group-btn">
+                        <a (click)="addProduct()" class="btn btn-danger float-right" data-toggle="modal"
+                            data-target="#modal-product-form"><i class="fa fa-plus"></i>&nbsp;Add
+                            Product</a>
+                    </span>
+                </div>
+            </div>
+            <div class="box-body" style="padding:0px !important;">
+                <div class="tableFixHead">
+                    <table id="list-locker-table" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Recent Activity</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <!-- <th>State</th> -->
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="products.length==0">
+                                <td colspan="15">
+                                    No data available
+                                </td>
+                            </tr>
+                            <tr *ngFor="let product of products" id="product-{{ product.id }}">
+                                <td> {{ product.updatedDate | amTimeAgo}} </td>
+                                <td> {{ product.name }} </td>
+                                <td> {{ product.quantity }} </td>
+                                <td> {{ product.price }} </td>
+                                <!-- <td *ngIf="loggedInUserRole == 'Admin' ">
+                                    <span *ngIf="product.state" class="label label-success">Available
+                                    </span>
+                                    <span *ngIf="!product.state" class="label label-danger">Removed
+                                    </span>
+                                </td> -->
+                                <td>
+                                    <span *ngIf="product.status =='Active'" class="label label-success">{{
+                                        product.status
+                                        }}
+                                    </span>
+                                    <span *ngIf="product.status =='Inactive'" class="label label-danger">{{
+                                        product.status
+                                        }}
+                                    </span>
+                                </td>
+                                <td><a class="cursor-pointer" data-toggle="modal" data-target="#modal-product-form"
+                                        (click)="editProduct(product)"><i class="fa fa-pencil"></i></a>
+                                </td>
+                                <td *ngIf="product.status == 'Active' "><a class="cursor-pointer"
+                                        (click)="toggleProduct(product)"><i class="fa fa-toggle-on"></i></a></td>
+                                <td *ngIf="product.status == 'Inactive' "><a class="cursor-pointer"
+                                        (click)="toggleProduct(product)"><i class="fa fa-toggle-off"></i></a></td>
+                                <td><a class="cursor-pointer" (click)="deleteProduct(product)"><i
+                                            class="fa fa-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modal-product-form">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeProductForm()">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ title }}</h4>
+            </div>
+            <div class="modal-body">
+                <app-product-form [products]="products" (productsChange)='updateProducts($event)' [product]="product">
+                </app-product-form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

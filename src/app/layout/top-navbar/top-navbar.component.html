@@ -1,0 +1,49 @@
+<header class="main-header">
+  <nav class="navbar navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="javascript:void(0)" class="navbar-brand"> <b>{{ appName }}</b></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">{{loggedInUser.fullName}} </span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+
+                <p>
+                  {{loggedInUser.fullName}}
+                  <small>User since : <b>
+                      {{ loggedInUser.createdDate | amTimeAgo }}</b></small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a [routerLink]="['/change-password-form/',loggedInUser.uuid]" class="btn btn-default btn-flat">Change
+                    Password</a>
+                </div>
+                <div class="pull-right">
+                  <a (click)="logout()" class="btn btn-default btn-flat">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li title="Logout"><a href="javascript:void(0)" (click)="logout()"><i class="fa fa-sign-out"></i> </a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

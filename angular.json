@@ -1,0 +1,169 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "workzish-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "release",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/firebase-messaging-sw.js",
+              "src/manifest.json"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/angular-notifier/styles/core.css",
+              "node_modules/angular-notifier/styles/themes/theme-material.css",
+              "node_modules/angular-notifier/styles/types/type-default.css",
+              "node_modules/angular-notifier/styles/types/type-error.css",
+              "node_modules/angular-notifier/styles/types/type-info.css",
+              "node_modules/angular-notifier/styles/types/type-success.css",
+              "node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css",
+              "src/assets/dist/css/ng-select/select.css",
+              "src/assets/dist/css/buttons.dataTables.min.css",
+              "src/assets/dist/css/buttons.bootstrap.min.css",
+              "node_modules/swiper/css/swiper.min.css"
+            ],
+            "scripts": [
+              "src/assets/bower_components/jquery/dist/jquery.min.js",
+              "src/assets/bower_components/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/plugins/iCheck/icheck.min.js",
+              "src/assets/bower_components/fastclick/lib/fastclick.js",
+              "src/assets/dist/js/adminlte.min.js",
+              "src/assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js",
+              "src/assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js",
+              "src/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js",
+              "src/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
+              "src/assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js",
+              "src/assets/bower_components/chart.js/Chart.js",
+              "src/assets/dist/js/pages/dashboard2.js",
+              "src/assets/bower_components/datatables.net/js/jquery.dataTables.min.js",
+              "src/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
+              "node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js",
+              "src/assets/dist/js/dataTables.buttons.min.js",
+              "src/assets/dist/js/jszip.min.js",
+              "src/assets/dist/js/pdfmake.min.js",
+              "src/assets/dist/js/vfs_fonts.js",
+              "src/assets/dist/js/buttons.html5.min.js",
+              "src/assets/dist/js/buttons.print.min.js",
+              "src/assets/dist/js/buttons.colVis.min.js",
+              "src/assets/dist/js/buttons.bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "20mb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "workzish-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "workzish-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "workzish-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "workzish-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "workzish-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "workzish-app",
+  "cli": {
+    "analytics": false
+  }
+}

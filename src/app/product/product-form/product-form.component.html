@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+            <!-- <div class="box box-danger theme-black">
+                <div class="box-header">
+                    <h3 *ngIf="locker == undefined" class="box-title theme-black">Add Locker</h3>
+                    <h3 *ngIf="locker != undefined" class="box-title theme-black">Edit Locker</h3>
+                    <div *ngIf="loggedInUserRole == 'Admin'" class="material-switch pull-right">
+                        <input id="state" name="state" formControlName="state" type="checkbox" />
+                        <label for="state" class="label-danger"></label>
+                    </div>
+                </div>
+                <div class="box-body"> -->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" [ngClass]="fields.name.errors && !fields.name.pristine? 'has-error': ''">
+                        <label for="name">Name:</label>
+                        <input formControlName="name" placeholder="Enter Name" name="name" class="form-control"
+                            id="name" #name />
+                        <span class="glyphicon form-control-feedback"></span>
+                        <div *ngIf="fields.name.errors && !fields.name.pristine" class="help-block">
+                            <div [hidden]="!fields.name.errors.required">
+                                Name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group"
+                        [ngClass]="fields.quantity.errors && !fields.quantity.pristine? 'has-error': ''">
+                        <label for="quantity">Quantity:</label>
+                        <input formControlName="quantity" placeholder="Enter Quantity" name="quantity"
+                            class="form-control" id="quantity" #quantity type="number" />
+                        <span class="glyphicon form-control-feedback"></span>
+                        <div *ngIf="fields.quantity.errors && !fields.quantity.pristine" class="help-block">
+                            <div [hidden]="!fields.quantity.errors.required">
+                                Quantity is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" [ngClass]="fields.price.errors && !fields.price.pristine? 'has-error': ''">
+                        <label for="price">Price:</label>
+                        <input formControlName="price" placeholder="Enter Price" name="price" class="form-control"
+                            id="price" #price type="number" />
+                        <span class="glyphicon form-control-feedback"></span>
+                        <div *ngIf="fields.price.errors && !fields.price.pristine" class="help-block">
+                            <div [hidden]="!fields.price.errors.required">
+                                Price is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label></label>
+                        <button class="btn btn-block btn-flat btn-danger"
+                            [disabled]="!(productForm.valid && productForm.dirty)">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- </div>
+            </div> -->
+        </form>
+    </div>
+</div>
