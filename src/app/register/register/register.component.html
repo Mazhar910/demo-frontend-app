@@ -10,7 +10,7 @@
 
 
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
           <div class="form-group has-feedback"
             [ngClass]="fields.fullName.errors && !fields.fullName.pristine ? 'has-error' : ''">
             <input type="text" formControlName="fullName" class="form-control" placeholder="Enter Full Name">
@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-12">
           <div class="form-group has-feedback"
             [ngClass]="fields.phone.errors && !fields.phone.pristine || phoneUsed || invalidPhone ? 'has-error' : ''">
             <input (keypress)="numberOnly($event)" (keyup)="isPhoneUsed(phone.value) || isValidPhone(phone.value)"
@@ -57,7 +57,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group has-feedback"
             [ngClass]="fields.password.errors && !fields.password.pristine ? 'has-error' : ''">
             <input type="password" formControlName="password" placeholder="Enter Password" name="password"
@@ -67,7 +67,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group has-feedback"
             [ngClass]="fields.confirmPassword.errors && !fields.confirmPassword.pristine ? 'has-error' : ''">
             <input type="password" formControlName="confirmPassword" placeholder="Enter Confirm Password"
